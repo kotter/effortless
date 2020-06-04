@@ -1,5 +1,5 @@
-# You must accept the Chef License to use this software: https://www.chef.io/end-user-license-agreement/
-# Change [chef_license] from acceptance = "undefined" to acceptance = "accept-no-persist" if you agree to the license.
+# You must accept the Chef License to use this software: https://www.cinc.io/end-user-license-agreement/
+# Change [cinc_license] from acceptance = "undefined" to acceptance = "accept-no-persist" if you agree to the license.
 
 interval = 1800
 splay = 1800
@@ -10,7 +10,7 @@ env_path_prefix = "/sbin:/usr/sbin:/usr/local/sbin:/usr/local/bin:/usr/bin:/bin"
 ssl_verify_mode = ":verify_peer"
 verify_api_cert = false
 
-[chef_license]
+[cinc_license]
 acceptance = "undefined"
 
 [automate]

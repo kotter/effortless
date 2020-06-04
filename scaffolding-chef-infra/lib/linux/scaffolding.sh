@@ -4,14 +4,19 @@ if [ -z "${scaffold_policy_name+x}" ]; then
 fi
 
 scaffolding_load() {
+<<<<<<< HEAD
   : "${scaffold_chef_client:=chef/chef-infra-client}"
+=======
+  : "${scaffold_cinc_client:=cinc/cinc-infra-client}"
+  : "${scaffold_cinc_dk:=cinc/cinc-dk}"
+>>>>>>> cinc
   : "${scaffold_cacerts:=core/cacerts}"
   : "${scaffold_policyfile_path:=$PLAN_CONTEXT/../policyfiles}"
   : "${scaffold_data_bags_path:=$PLAN_CONTEXT/../data_bags}"
 
   pkg_deps=(
     "${pkg_deps[@]}"
-    "${scaffold_chef_client}"
+    "${scaffold_cinc_client}"
   )
   if [ "${scaffold_cacerts}" == "core/cacerts" ]; then
     pkg_deps+=("core/cacerts")
@@ -21,6 +26,10 @@ scaffolding_load() {
 
   pkg_build_deps=(
     "${pkg_build_deps[@]}"
+<<<<<<< HEAD
+=======
+    "${scaffold_cinc_dk}"
+>>>>>>> cinc
     "core/git"
   )
 
@@ -47,7 +56,7 @@ do_default_build_service() {
   mkdir -p "${pkg_prefix}/hooks"
   # Template buildtime variables into the run hook.
   # This allows us to render the run hook from a file.
-  sed -e "s,\${scaffold_cacerts},${scaffold_cacerts},g;s,\${scaffold_chef_client},${scaffold_chef_client},g" "${lib_dir}/run.bash" >> "${pkg_prefix}/hooks/run"
+  sed -e "s,\${scaffold_cacerts},${scaffold_cacerts},g;s,\${scaffold_cinc_client},${scaffold_cinc_client},g" "${lib_dir}/run.bash" >> "${pkg_prefix}/hooks/run"
   chmod 0750 -R "${pkg_prefix}/hooks"
 }
 
@@ -65,6 +74,7 @@ do_default_build() {
 
   for p in $(grep include_policy "${policyfile}" | awk -F "," '{print $1}' | awk -F '"' '{print $2}' | tr -d " "); do
     build_line "Detected included policyfile, ${p}.rb, installing"
+<<<<<<< HEAD
     chef-cli install "${scaffold_policyfile_path}/${p}.rb"
   done
   for p in $(grep include_policy "${policyfile}" | awk -F "," '{print $1}' | awk -F '\x27' '{print $2}' | tr -d " "); do
@@ -77,6 +87,20 @@ do_default_build() {
 
 do_default_install() {
   chef-cli export "${scaffold_policyfile_path}/${scaffold_policy_name}.lock.json" "${pkg_prefix}"
+=======
+    cinc install "${scaffold_policyfile_path}/${p}.rb"
+  done
+  for p in $(grep include_policy "${policyfile}" | awk -F "," '{print $1}' | awk -F '\x27' '{print $2}' | tr -d " "); do
+    build_line "Detected included policyfile, ${p}.rb, installing"
+    cinc install "${scaffold_policyfile_path}/${p}.rb"
+  done
+
+  cinc install "${policyfile}"
+}
+
+do_default_install() {
+  cinc export "${scaffold_policyfile_path}/${scaffold_policy_name}.lock.json" "${pkg_prefix}"
+>>>>>>> cinc
 
   mkdir -p "${pkg_prefix}/config"
 

@@ -6,10 +6,10 @@
 pkg_name=user-linux
 pkg_origin=ci
 pkg_version="1.0.0"
-pkg_scaffolding="ci/scaffolding-chef-infra"
+pkg_scaffolding="ci/scaffolding-cinc-infra"
 pkg_svc_user=("root")
 scaffold_policy_name="ci"
-scaffold_chef_client="chef/chef-client/14.13.11"
+scaffold_cinc_client="cinc/cinc-infra-client/15.10.14/20200422151104"
 scaffold_cacerts="ci/cacerts"
 
 # Required Metadata for CI

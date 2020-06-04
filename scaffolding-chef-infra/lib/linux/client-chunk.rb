@@ -11,7 +11,7 @@ cfg_verify_api_cert ||= false
 verify_api_cert "#{cfg_verify_api_cert}"
 
 {{#if cfg.automate.enable ~}}
-chef_guid '{{sys.member_id}}'
+cinc_guid '{{sys.member_id}}'
 data_collector.token '{{cfg.automate.token}}'
 data_collector.server_url '{{cfg.automate.server_url}}'
 {{/if ~}}

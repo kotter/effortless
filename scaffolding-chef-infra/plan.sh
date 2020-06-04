@@ -1,9 +1,10 @@
-pkg_name=scaffolding-chef-infra
-pkg_description="Scaffolding for Chef Infra Policyfiles"
-pkg_origin=chef
+pkg_name=scaffolding-cinc-infra
+pkg_description="Scaffolding for Cinc Infra Policyfiles"
+pkg_origin=cinc
 pkg_version=$(cat "${PLAN_CONTEXT}/../VERSION")
 pkg_maintainer="The Habitat Maintainers <humans@habitat.sh>"
 pkg_license=('Apache-2.0')
+<<<<<<< HEAD
 pkg_upstream_url="https://www.chef.sh"
 pkg_deps=(
   core/git
@@ -18,6 +19,9 @@ do_setup_environment() {
   set_runtime_env LANG "en_US.UTF-8"
   set_runtime_env LC_CTYPE "en_US.UTF-8"
 }
+=======
+pkg_upstream_url="https://cinc.sh"
+>>>>>>> cinc
 
 do_download() {
   return 0

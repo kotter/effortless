@@ -1,7 +1,7 @@
 #!/bin/sh
 #/ Usage: test.sh <pkg_ident>
 #/
-#/ Example: test.sh chef/scaffolding-chef-infra/1.2.0/20181108151533
+#/ Example: test.sh cinc/scaffolding-cinc-infra/1.2.0/20181108151533
 #/
 
 set -euo pipefail
@@ -16,7 +16,7 @@ export TEST_PKG_IDENT
 TEST_PKG_NAME="$(echo "${TEST_PKG_IDENT}" | cut -d/ -f2)"
 export TEST_PKG_NAME
 source "$(dirname "${0}")/../habitat/plan.sh"
-export scaffold_chef_client
+export scaffold_cinc_client
 export scaffold_cacerts
 export pkg_svc_path
 
